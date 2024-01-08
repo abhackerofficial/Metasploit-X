@@ -1,0 +1,76 @@
+#!/usr/bin/bash
+
+# Author : ABHacker Official
+# Copyright : ©2020-25-May
+# Update on : 2020-28-NOV
+# Script follows here:
+
+
+banner() {
+clear
+sleep 0.5
+echo -e '\033[1;94m
+
+\e[0;1;38;2;41;121;255m┏━┓┏━┓  ┏┓         ┏┓    ┏┓ \033[1;91m  ┏━┓┏━┓\033[0m
+\e[0;1;38;2;41;121;255m┃┃┗┛┃┃ ┏┛┗┓        ┃┃   ┏┛┗┓\033[1;91m  ┗┓┗┛┏┛\033[0m
+\e[0;1;38;2;41;121;255m┃┏┓┏┓┣━┻┓┏╋━━┳━━┳━━┫┃┏━━╋┓┏┛\033[1;91m   ┗┓┏┛\033[0m
+\e[0;1;38;2;41;121;255m┃┃┃┃┃┃┃━┫┃┃┏┓┃━━┫┏┓┃┃┃┏┓┣┫┃ \033[1;91m┏━━┳┛┗┓\033[0m
+\e[0;1;38;2;41;121;255m┃┃┃┃┃┃┃━┫┗┫┏┓┣━━┃┗┛┃┗┫┗┛┃┃┗┓\033[1;91m┗━┳┛┏┓┗┓\033[0m
+\e[0;1;38;2;41;121;255m┗┛┗┛┗┻━━┻━┻┛┗┻━━┫┏━┻━┻━━┻┻━┛\033[1;91m  ┗━┛┗━┛\033[0m
+\e[0;1;38;2;41;121;255m                ┃┃
+\e[0;1;38;2;41;121;255m                ┗┛'
+
+echo -e '\e[0;102;30m     Coding by @abhackerofficial    \033[0m'
+sleep 0.2 ;echo;echo; }
+
+options() {
+printf "\e[0;1;38;2;41;121;255m[\e[0m\e[1;77m1\e[0m\e[0;1;38;2;41;121;255m]\e[0m\e[0;1;38;2;41;121;255m Install Metasploit \e[0m(Installed\e[0m)"
+echo""
+printf "\e[1;92m[\e[0m\e[1;77m2\e[0m\e[1;92m]\e[0m\e[1;92m Uninstall Metasploit \e[0m(Installed\e[0m"
+echo""
+printf "\e[1;38;2;255;255;0m[\e[0m\e[1;77m3\e[0m\e[1;38;2;255;255;0m]\e[0m\e[1;38;2;255;255;0m MSVENOM [Payload] \e[0m(MSF Required\e[0m)"
+echo""
+printf "\e[1;38;2;0;230;118m[\e[0m\e[1;77m4\e[0m\e[1;38;2;0;230;118m]\e[0m\e[1;38;2;0;230;118m Update \e[0m(Metasploit-X)\e[0m"
+echo
+printf $'\n\e[1;91m[\e[0m\e[1;77m*\e[0m\e[1;91m] Choose an option : \e[0m'; }
+
+options1() {
+printf "\e[0;1;38;2;41;121;255m[\e[0m\e[1;77m1\e[0m\e[0;1;38;2;41;121;255m]\e[0m\e[0;1;38;2;41;121;255m Install Metasploit \e[0m(Not Installed)\e[0m"
+echo""
+printf "\e[1;92m[\e[0m\e[1;77m2\e[0m\e[1;92m]\e[0m\e[1;92m Uninstall Metasploit \e[0m(Not Installed)\e[0m"
+echo""
+printf "\e[1;38;2;255;255;0m[\e[0m\e[1;77m3\e[0m\e[1;38;2;255;255;0m]\e[0m\e[1;38;2;255;255;0m MSVENOM [Payload] \e[0m(MSF Required\e[0m)"
+echo
+printf "\e[1;38;2;0;230;118m[\e[0m\e[1;77m4\e[0m\e[1;38;2;0;230;118m]\e[0m\e[1;38;2;0;230;118m Update \e[0m(Metasploit-X)\e[0m"
+echo
+printf $'\n\e[1;91m[\e[0m\e[1;77m*\e[0m\e[1;91m] Choose an option : \e[0m'; }
+
+if [ -d "/data/data/com.termux/files/usr/opt/metasploit-framework" ]; then
+banner;options
+else
+banner
+options1
+fi
+
+read meta
+if [[ $meta = "1" ]] || [[ $meta = "01" ]]
+        then clear
+cd programs && bash install.sh
+
+elif [[ $meta = "2" ]] || [[ $meta = "02" ]]
+        then clear
+cd programs && bash uninstall.sh
+
+elif [[ $meta = "3" ]] || [[ $meta = "03" ]]
+        then cd programs && bash msvenom.sh
+
+elif [[ $meta = "4" ]] || [[ $meta = "04" ]]
+        then echo;echo -e "\e[0;1m[!] Updating... Metasploit-X\n"
+cd programs && bash update.sh
+
+elif [[ $meta = "exit" ]] || [[ $meta = "Exit" ]] || [[ $meta = "EXIT" ]] || [[ $meta = "kill" ]] || [[ $meta = "Kill" ]] || [[ $meta = "KILL" ]] || [[ $meta = "bye" ]] || [[ $meta = "Bye" ]] || [[ $meta = "BYE" ]];then echo -e "\e[0;1mClosing..."; exit
+
+else echo;
+printf "\e[1;77m[!] Invalid option! Closing..\e[0m\n\n"
+exit
+fi
